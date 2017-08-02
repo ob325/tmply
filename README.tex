@@ -1,0 +1,56 @@
+% Created 2017-08-02 Wed 19:51
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\author{Bill O'Brien}
+\date{\today}
+\title{README}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs 25.1.1 (Org mode 8.2.10)}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\section{Project descriptions}
+\label{sec-1}
+I'm putting together a python module with functions to perform template matching for direct comparison of hospital quality metrics. This is a topic in health services research but could be applied to any risk-adjustment type work. 
+
+The work so far is based off of a paper by Silber et al (\url{https://www.ncbi.nlm.nih.gov/pubmed/24588413}). 
+
+I am looking for collaborators, so feel free to get in touch. 
+
+\section{Status}
+\label{sec-2}
+\subsection{Completed tasks}
+\label{sec-2-1}
+\begin{itemize}
+\item Simulate a dataset of hospital quality metrics and patient characteristics (simulate-data.py).
+\item Function make$_{\text{samples}}$ bootstraps n samples of k cases with replacement.
+\item Function closest$_{\text{sample}}$ calculates the sample whose Mahalanobis distance of sample means is closest to that of the original data.
+\end{itemize}
+
+\subsection{To do}
+\label{sec-2-2}
+\begin{itemize}
+\item Next step is to match patients in each hospital with the closest patient in the "best" sample.
+\end{itemize}
+% Emacs 25.1.1 (Org mode 8.2.10)
+\end{document}

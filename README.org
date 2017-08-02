@@ -1,0 +1,18 @@
+#+AUTHOR: Bill O'Brien
+#+EMAIL: willjobrien@gmail.com
+
+* Project descriptions
+I'm putting together a python module with functions to perform template matching for direct comparison of hospital quality metrics. This is a topic in health services research but could be applied to any risk-adjustment type work. 
+
+The work so far is based off of a paper by Silber et al (https://www.ncbi.nlm.nih.gov/pubmed/24588413). 
+
+I am looking for collaborators, so feel free to get in touch. 
+
+* Status
+** Completed tasks
+- Simulate a dataset of hospital quality metrics and patient characteristics (simulate-data.py). 
+- Function make_samples bootstraps n samples of k cases with replacement. 
+- Function closest_sample calculates the sample whose Mahalanobis distance of sample means is closest to that of the original data. 
+
+** To do
+- Next step is to match patients in each hospital with the closest patient in the "best" sample. The Silber paper uses a mixed integer programming package in R. I have to figure out what we have in Python that is similar.
