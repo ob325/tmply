@@ -1,11 +1,10 @@
 # generate a random sample of patients within hospitals
 import pandas as pd
 import numpy as np
-import datetime as dt
 from tmply import tmply
 
 
-def makeSim(nHosps, nPatients):
+def make_sim(nHosps, nPatients):
     df = pd.DataFrame()
     df['patientid'] = range(nPatients)
     df['hospid'] = np.random.randint(0, nHosps, nPatients)

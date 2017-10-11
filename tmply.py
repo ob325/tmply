@@ -11,21 +11,33 @@ class tmply(object):
     def __init__(self):
         print("Template initiated")
 
-    def make_samples(self, orig, n_samples):
+    def make_sim(self, nHosps, nPatients):
+        df = pd.DataFrame()
+        df['patientid'] = range(nPatients)
+        df['hospid'] = np.random.randint(0, nHosps, nPatients)
+        df['rdm30d'] = np.random.uniform(0, 1, nPatients) < 0.1
+        df['sex'] = np.random.randint(0, 2, nPatients)
+        df['age'] = np.random.normal(65, 18, nPatients)
+        df['race'] = np.random.randint(0, 4, nPatients)
+        df['los'] = np.random.normal(8, 2, nPatients)
+        race_dummy = pd.get_dummies(df['race'], prefix='race_')
+        del df['race']
+        df2 = pd.concat([df, race_dummy], axis=1)
+        return df2
+
+    def make_samples(self, orig, n_samples, n_cases):
         # generate k random samples of n patients
         samples = pd.DataFrame()
         for k in range(0, n_samples):
-            new_sample = orig.sample(n=n_samples, random_state=k)
+            new_sample = orig.sample(n=n_cases, random_state=k)
             new_sample['sample_id'] = k
             samples = pd.concat([samples, new_sample], axis=0)
         return samples
-
 
     def closest_sample(self, orig, samples):
         # pick closest sample based on Mahalanobis distance
         # first calculate means of each sample
         orig_means = orig.iloc[:, 3:].mean().to_frame().transpose()
-
         sample_means = samples.groupby('sample_id').mean()
         sample_means = sample_means.iloc[:, 3:]
 
@@ -48,6 +60,3 @@ class tmply(object):
         # return the sample closest to population
         closest_index = final['mahal'].idxmin(axis=1)
         return samples[samples['sample_id'] == closest_index]
-
-
-    
